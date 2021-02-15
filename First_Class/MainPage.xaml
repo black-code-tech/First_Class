@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="First_Class.MainPage">
+
+    <!--<StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="First Xamarin.Forms Class" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+    </StackLayout>-->
+
+    <Grid RowDefinitions="*,2*,.5*,2*" ColumnDefinitions="*,*">
+
+        <Image Source="img.jpg"
+               Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2"
+               BackgroundColor="DarkSeaGreen"/>
+
+        <Editor Grid.Row="1"
+                Grid.Column="0" 
+                Grid.ColumnSpan="2"
+                Text="{Binding Text}"
+                BackgroundColor="White"
+                Placeholder="Provide your detils here..."/>
+
+        <Button Grid.Row="2" 
+                Grid.Column="0" 
+                Text="Save"
+                BackgroundColor="ForestGreen"
+                TextColor="White"
+                Command="{Binding SaveCommand}"/>
+
+        <Button Grid.Row="2" 
+                Grid.Column="1" 
+                Text="Delete" BackgroundColor="Red"
+                TextColor="White"
+                Command="{Binding DeleteCommand}"/>
+
+        <CollectionView ItemsSource="{Binding Applist}" 
+                        Grid.Row="3"
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2">
+
+            <CollectionView.EmptyView>
+                <Grid>
+                    <Label Text="Empty Note..."
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="Large"/>
+                </Grid>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <Frame Padding="5" HasShadow="True">
+                        <StackLayout Orientation="Horizontal">
+
+                            <Label Text=" -- " 
+                               TextColor="DodgerBlue"
+                               FontSize="Body"/>
+                            <Label Text="{Binding .}" 
+                               TextColor="Black"
+                               FontSize="Medium"/>
+                        </StackLayout>
+
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
