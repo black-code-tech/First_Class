@@ -6,17 +6,17 @@ namespace First_Class.ViewModels
 {
     public class DetailPageViewModel : BaseViewModel
     {
-        private string deatails;
+        private string details;
 
-        public string MyProperty
+        public string Details
         {
-            get { return deatails; }
-            set { myVar = value; }
+            get { return details; }
+            set { SetProperty(ref details, value); }
         }
 
         public DetailPageViewModel(string detailContent)
         {
-
+            Details = detailContent;
         }
 
     }

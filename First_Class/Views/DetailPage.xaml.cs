@@ -15,6 +15,8 @@ namespace First_Class.Views
         public DetailPage()
         {
             InitializeComponent();
+
+            BindingContext = new DetailPageViewModel();
         }
     }
 }
