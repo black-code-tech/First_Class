@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:First_Class.ViewModels"
              x:Class="First_Class.MainPage">
 
     <!--<StackLayout>
@@ -51,7 +52,7 @@
 
         <CollectionView ItemsSource="{Binding Applist}" 
                         Grid.Row="3"
-                        Grid.Column="0" 
+                        Grid.Column="0"
                         Grid.ColumnSpan="2">
 
             <CollectionView.EmptyView>
@@ -67,7 +68,7 @@
                         <Frame Padding="5" HasShadow="True">
                         <StackLayout Orientation="Horizontal">
 
-                            <Label Text=" -- " 
+                            <Label Text=" >>> " 
                                TextColor="DodgerBlue"
                                FontSize="Body"/>
                             <Label Text="{Binding .}" 
@@ -75,6 +76,11 @@
                                FontSize="Medium"/>
                         </StackLayout>
 
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainPageViewModel}}, Path=SelectedCommand}"
+                                    CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

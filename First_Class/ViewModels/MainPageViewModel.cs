@@ -1,4 +1,5 @@
-﻿using System;
+﻿using First_Class.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -17,6 +18,7 @@ namespace First_Class.ViewModels
         #region Public Members
 
         public Command SaveCommand { get; }
+        public Command SelectedCommand { get; }
         public Command DeleteCommand { get; }
 
 
@@ -25,6 +27,7 @@ namespace First_Class.ViewModels
             get { return text; }
             set { SetProperty(ref text, value); }
         }
+
 
         private ObservableCollection<string> applist;
 
@@ -41,6 +44,7 @@ namespace First_Class.ViewModels
         {
             Applist = new ObservableCollection<string>();
             SaveCommand = new Command(OnSave);
+            SelectedCommand = new Command<string>(OnItemSelected);
             DeleteCommand = new Command(OnDelete);
         }
         #endregion
@@ -57,6 +61,16 @@ namespace First_Class.ViewModels
         {
             Applist.Add(Text);
             Text = string.Empty;
+        }
+        
+        private async void OnItemSelected(string detail)
+        {
+            if (string.IsNullOrEmpty(detail))
+            {
+                return;
+            }
+
+            await App.Current.MainPage.Navigation.PushModalAsync(new DetailPage(detail));
         }
 
         #endregion

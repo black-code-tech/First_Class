@@ -1,4 +1,5 @@
-﻿using System;
+﻿using First_Class.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,11 @@ namespace First_Class.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DetailPage : ContentPage
     {
-        public DetailPage()
+        public DetailPage(string detail)
         {
             InitializeComponent();
 
-            BindingContext = new DetailPageViewModel();
+            BindingContext = new DetailPageViewModel(detail);
         }
     }
 }
